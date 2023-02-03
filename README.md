@@ -6,14 +6,14 @@ In this Fachprojekt you will gradually learn how to build a LLVM Pass, that perf
 
 Should you encounter something you think is a Bug, please let me (Nils) know, during lab sessions.
 
-Keep track of the Repository as I may add more features.
+Keep track of the Repository as we may add more features.
 
 ```
 git pull
 ```
 
-Also I do not support the usage of Windows, Linux is free of charge so get a copy.
-I am more than happy helping you install Linux on your machine.
+Also we do not support the usage of Windows, Linux is free of charge so get a copy.
+We am more than happy helping you install Linux on your machine.
 
 ## Setups
 
@@ -36,7 +36,7 @@ This Setup is for local development on your own machine. You can also use the pr
 
 Again for this setup you cannot use the OSS version of VS code or the version from Snap, as the remote development extensions will not work.
 
-2.) I recommend you install the following extensions in vs code
+2.) We recommend you install the following extensions in vs code
 
 clangd,
 Clang-Format,
@@ -44,10 +44,10 @@ CodeLLDB,
 Docker and
 Remote Development (Microsoft VS Code only!)
 
-For a general and minimal C/C++ setup of VS Code (I consider good) see:
+For a general and minimal C/C++ setup of VS Code (we consider good) see:
 <https://ahemery.dev/2020/08/24/c-cpp-vscode/>
 
-The only annoying thing are the Inlay Hints from clangd, which can be disabled by setting the following setting (I Did this already for this Projekt):
+The only annoying thing are the Inlay Hints from clangd, which can be disabled by setting the following setting (we Did this already for this Projekt):
 ```json
 "editor.inlayHints.enabled": "offUnlessPressed"
 ```
@@ -67,7 +67,7 @@ For Debugging see the play button with a bug on it, we will provide you with a c
 
 The best way to see what your function does is to use the [UnitTest.cpp](https://git.cs.tu-dortmund.de/nils.hoelscher/RTSA-lab01-CacheAnalysis/src/branch/master/UnitTest/UnitTest.cpp).
 With "C++ TestMate" install you can simply run or debug the test from the side panel in VS Code (Flask Icon).
-The "C++ TestMate" is not installed in the VM as I just added this feature now.
+The "C++ TestMate" is not installed in the VM as we just added this feature now.
 Please feel free to add more test cases to your liking in [UnitTest.cpp](https://git.cs.tu-dortmund.de/nils.hoelscher/RTSA-lab01-CacheAnalysis/src/branch/master/UnitTest/UnitTest.cpp).
 
 
@@ -135,7 +135,7 @@ opt -load-pass-plugin build/libCacheAnalysisPass.so \
 
 ## Alternative Setups
 
-These Setups are alternatives and I do not recommend them.
+These Setups are alternatives and we do not recommend them.
 These are here in case you want to "play around" with the Code and LLVM.
 
 ### Installing LLVM 14 on Mac OS X
@@ -202,7 +202,7 @@ This is my personally preferred IDE setup for C/C++ and by no means needed to ac
 
 <https://code.visualstudio.com/>
 
-2.) I recommend you install the following extensions in vs code
+2.) we recommend you install the following extensions in vs code
 
 clangd,
 Clang-Format,
@@ -211,7 +211,7 @@ C++ TestMate,
 Docker and
 Remote Development (Microsoft VS Code only!)
 
-For a general C/C++ setup of VS Code (I consider good) see:
+For a general C/C++ setup of VS Code (we consider good) see:
 <https://ahemery.dev/2020/08/24/c-cpp-vscode/>
 
 Most parts can be skipped, as they are already integrated in this Repo.
