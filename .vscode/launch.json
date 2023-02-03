@@ -11,7 +11,7 @@
       "program": "/usr/bin/opt",
       "args": [
         "-load-pass-plugin",
-        "${workspaceFolder}/build/lib/libCacheAnalysisPass.so",
+        "${workspaceFolder}/build/lib/libFpPass.so",
         "-passes=lru-misses",
         "${workspaceFolder}/test/fft1.ll",
         "-o",

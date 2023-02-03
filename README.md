@@ -1,6 +1,10 @@
 # FP-LLVM
 In this Fachprojekt you will gradually learn how to build a LLVM Pass, that performs analysis and transformations on the code.
 
+## Getting Started
+
+ Start doing the first simple Hello World exercise.
+
 
 ## Disclaimer
 
@@ -13,7 +17,7 @@ git pull
 ```
 
 Also we do not support the usage of Windows, Linux is free of charge so get a copy.
-We am more than happy helping you install Linux on your machine.
+We are more than happy helping you install Linux on your machine.
 
 ## Setups
 

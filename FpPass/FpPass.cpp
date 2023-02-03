@@ -51,6 +51,9 @@ struct FpPass : PassInfoMixin<FpPass> {
 
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &MAM) {
 
+    StringRef MName = M.getName();
+    outs() << "Hello World from Module: " << MName;
+
     return PreservedAnalyses::all();
   }
 };
