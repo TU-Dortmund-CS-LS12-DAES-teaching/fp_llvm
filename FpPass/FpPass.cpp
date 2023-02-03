@@ -1,6 +1,6 @@
 //=============================================================================
 // FILE:
-//    CacheAnalysisPass.cpp
+//    FPPass.cpp
 //
 // DESCRIPTION:
 //    Visits all functions in a module, prints their names and the number of
@@ -10,7 +10,7 @@
 //
 // USAGE:
 //    New PM:
-//      opt -load-pass-plugin=libCacheAnalysisPass.dylib -passes=lru-misses `\`
+//      opt -load-pass-plugin=libFPPass.dylib -passes=lru-misses `\`
 //        -disable-output <input-llvm-file>
 //
 //
@@ -39,7 +39,7 @@
 using namespace llvm;
 
 //-----------------------------------------------------------------------------
-// CacheAnalysisPass implementation
+// FPPass implementation
 //-----------------------------------------------------------------------------
 // No need to expose the internals of the pass to the outside world - keep
 // everything in an anonymous namespace.
@@ -60,7 +60,7 @@ struct FpPass : PassInfoMixin<FpPass> {
 //-----------------------------------------------------------------------------
 // New PM Registration
 //-----------------------------------------------------------------------------
-llvm::PassPluginLibraryInfo getCacheAnalysisPassPluginInfo() {
+llvm::PassPluginLibraryInfo getFPPassPluginInfo() {
   return {LLVM_PLUGIN_API_VERSION, "FpPass", LLVM_VERSION_STRING,
           [](PassBuilder &PB) {
             PB.registerPipelineParsingCallback(
@@ -76,9 +76,9 @@ llvm::PassPluginLibraryInfo getCacheAnalysisPassPluginInfo() {
 }
 
 // This is the core interface for pass plugins. It guarantees that 'opt' will
-// be able to recognize CacheAnalysisPass when added to the pass pipeline on
+// be able to recognize FPPass when added to the pass pipeline on
 // the command line, i.e. via '-passes=lru-misses'
 extern "C" LLVM_ATTRIBUTE_WEAK ::llvm::PassPluginLibraryInfo
 llvmGetPassPluginInfo() {
-  return getCacheAnalysisPassPluginInfo();
+  return getFPPassPluginInfo();
 }
