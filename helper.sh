@@ -1,5 +1,7 @@
 #!/bin/bash
 
+Solution0="Hello World from Module: /workspaces/fp_llvm/test/fft1.ll"
+
 clean() {
   echo "==== Cleaning build folder ===="
   rm -rf build/
@@ -35,6 +37,22 @@ run() {
 
 test() {
   ./build/bin/UnitTest --gtest_brief=1
+}
+
+ex0() {
+  #echo "==== Running $1 ===="
+  OUT="$(opt -load-pass-plugin build/lib/libFpPass.so \
+    -passes='lru-misses(function(loop-unroll-and-jam))' \
+    /workspaces/fp_llvm/test/fft1.ll -o /dev/null)"
+  if [ "$OUT" = "$Solution0" ]; then
+    echo "Exercise 0 Passed!"
+  else
+    echo $OUT
+    echo $Solution0
+    exit 1
+  fi
+
+  #llvm-dis < out.bc > out.ll
 }
 
 allBenchs=("adpcm"
@@ -95,6 +113,9 @@ autogradesetup() {
 }
 
 case $1 in
+ex0)
+  ex0
+  ;;
 as)
   autogradesetup
   ;;
