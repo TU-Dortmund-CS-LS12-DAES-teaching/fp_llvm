@@ -12,7 +12,7 @@ Everyone should have the same working envoironment/IDE after this exercise.
 
 ### Links
 
-LLVM Pass Tutorial: [Tutorial](https://llvm.org/docs/WritingAnLLVMPass.html#quick-start-writing-hello-world)
+LLVM Pass Tutorial: [Tutorial](https://llvm.org/docs/WritingAnLLVMNewPMPass.html)
 
 ## Exercise
 
