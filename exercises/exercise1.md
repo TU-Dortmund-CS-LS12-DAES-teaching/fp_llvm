@@ -2,7 +2,7 @@
 
 ## Requirements
 
-At this point you should have scecessfully finished the Setup in the Readme and be able to build the project. You have also amde yourself familiar with the different LLVM Passes and how they work.
+At this point you should have successfully finished the Setup in the Readme and be able to build the project. You have also amde yourself familiar with the different LLVM Passes and how they work.
 
 ## Goals
 In this exercise you will learn how to write a LLVM Pass and traverse the Code of a programm and to work with Values.
@@ -14,7 +14,7 @@ LLVM Intermediate Representation (IR): [LangRef](https://llvm.org/docs/LangRef.h
 LLVM Programmers Manual: [Manual](https://llvm.org/docs/ProgrammersManual.html)
 
 ### Static Single-Assignment (SSA)
-Is a intermediate langugae for compilers, which allows every variable to be assigned only once. And it has to be defined before it is used. The follwing two examples are not allowed in SSA:
+Is an intermediate language for compilers, which restricts every variable to be assigned only once and they have to be defined before they are used. The follwing two examples are not allowed in SSA:
 
 ```cpp
 int a = 5
@@ -27,7 +27,7 @@ int a;
 b = a + 1 // Not allowed in SSA
 ```
 
-However this comes with the issue that a simple if else statement can not be realized. For example try to convert the follwoing to SSA, spoiler you can not right now.
+However this comes with the issue that a simple if else statement can not be realized. For example try to convert the following to SSA. (spoiler: you can not do this for now.)
 ```cpp
 int b;
 if (a) {
@@ -41,7 +41,7 @@ Or the Following Loop:
 ```cpp
 for(int i = 0 ; ; i++) {}
 ```
-This form of a program is phibited by the rule of single assignmet. So a $\Phi$ ([Phi](https://llvm.org/docs/LangRef.html#phi-instruction)) function is needed. It looks like this:
+This form of a program is prohibited by the rule of single assignment. So a $\Phi$ ([Phi](https://llvm.org/docs/LangRef.html#phi-instruction)) function is needed. It looks like this:
 ```llvm
 Loop:       ; Infinite loop that counts from 0 on up...
   %indvar = phi i32 [ 0, %LoopHeader ], [ %nextindvar, %Loop ]
@@ -127,14 +127,14 @@ And the control flow through the BaiscBlocks (BBs), explained in next section, l
 ![ludcmp_return](Ex1_CFG_example.png)
 
 ### BasicBlock (BB)
-A BB is the maximum amount of Instructions, that are executen in a linear manner. This means that a BB starts on a point, where another position in the controll flow points too. And a BB ends by pointing to other BBs. Each square in the above Controll Flow Graph (CFG) contains a BB.
+A BB is the longest sequence of instructions that are executed in a linear manner. This means that a BB starts at a point, where another position in the control flow points too. And a BB ends by pointing to other BBs. Each square in the above Control Flow Graph (CFG) contains a BB.
 
 ### ControllFlowGraph (CFG)
 
-The CFG is a graph that visualizes and models the flow through a progrram. For example a loop would be a circle in the CFG. Again the above figure is a CFG a single function of a program.
+The CFG is a graph that visualizes and models the flow of a program. For example a loop would be a circle in the CFG. Again the above figure is a CFG a single function of a program.
 
 ## Exercise
 
 First make yourself familiar with the LLVM IR, using both the web documentation from LLVM and the small part written here. Make sure you have a good idea of the LLVM IR, since we will be working on it from now on.
 
-Second go back to the FpPass.cpp from exercise 0 and implement some loops, that can iterate over the whole program. See the LLVM Programmers Manual in scetion [helpful hints for common operations](https://llvm.org/docs/ProgrammersManual.html#helpful-hints-for-common-operations) for help. Try to print all add instructions with your pass. To check for Instruction types use the [dyn_cast<>](https://llvm.org/docs/ProgrammersManual.html#important-and-useful-llvm-apis).
+Second go back to FpPass.cpp from exercise 0 and implement some loops that iterate over the whole program. See the LLVM Programmers Manual in scetion [helpful hints for common operations](https://llvm.org/docs/ProgrammersManual.html#helpful-hints-for-common-operations) for help. Try to print all add instructions with your pass. To check for Instruction types use the [dyn_cast<>](https://llvm.org/docs/ProgrammersManual.html#important-and-useful-llvm-apis).
