@@ -5,14 +5,20 @@
 None
 
 ## Goals
-Everyone should ahve the same working envoironment/IDE after this exercise.
+Everyone should have the same working envoironment/IDE after this exercise.
+
+
+## Documentation
+
+### Links
+
+LLVM Pass Tutorial: [Tutorial](https://llvm.org/docs/WritingAnLLVMPass.html#quick-start-writing-hello-world)
 
 ## Exercise
 
 Do the Setup from the Readme.
 Once finished go to the FpPass folder and take a look at the FpPass.cpp.
-There is a run function inside the FpPass struct. Please output the following in the run function: "Hello from Module: [name of Module]". To do so, use the llvm::outs() function, which behaves like a normal cout() from C++. The Module name of Module M is acessible with getName().
-
+There is a run function inside the FpPass struct. Please output the following in the run function: "Hello from Module: [name of Module]". To do so, use the llvm::outs() function, which behaves like a normal cout() from C++. The Module name of Module M is acessible with getName(). Also make your self familiar with the different LLVM Passes in the Documentation.
 ## Test
 You can run the FpPass by pressing F5.
 This will start a debugging process, if wished you can even set break points in the code.
