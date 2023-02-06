@@ -13,7 +13,7 @@ In this exercise you will learn how to write a LLVM Pass and traverse the Code o
 LLVM Intermediate Representation (IR): [LangRef](https://llvm.org/docs/LangRef.html)
 LLVM Programmers Manual: [Manual](https://llvm.org/docs/ProgrammersManual.html)
 
-### Static Single-Assignment SSA
+### Static Single-Assignment (SSA)
 Is a intermediate langugae for compilers, which allows every variable to be assigned only once. And it has to be defined before it is used. The follwing two examples are not allowed in SSA:
 
 ```cpp
@@ -123,8 +123,16 @@ define dso_local i32 @ludcmp_return() #0 {
 }
 ```
 
-And the control flow through the BaiscBlocks BB`s looks like:
+And the control flow through the BaiscBlocks (BBs), explained in next section, looks like:
 ![ludcmp_return](Ex1_CFG_example.png)
+
+### BasicBlock (BB)
+A BB is the maximum amount of Instructions, that are executen in a linear manner. This means that a BB starts on a point, where another position in the controll flow points too. And a BB ends by pointing to other BBs. Each square in the above Controll Flow Graph (CFG) contains a BB.
+
+### ControllFlowGraph (CFG)
+
+The CFG is a graph that visualizes and models the flow through a progrram. For example a loop would be a circle in the CFG. Again the above figure is a CFG a single function of a program.
+
 ## Exercise
 
 First make yourself familiar with the LLVM IR, using both the web documentation from LLVM and the small part written here. Make sure you have a good idea of the LLVM IR, since we will be working on it from now on.
