@@ -1,172 +1,360 @@
-; ModuleID = 'select.c'
-source_filename = "select.c"
+; ModuleID = 'src/select.c'
+source_filename = "src/select.c"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-pc-linux-gnu"
 
-@arr = dso_local local_unnamed_addr global [20 x float] [float 5.000000e+00, float 4.000000e+00, float 0x40249999A0000000, float 0x3FF19999A0000000, float 0x4016CCCCC0000000, float 1.000000e+02, float 2.310000e+02, float 1.110000e+02, float 4.950000e+01, float 9.900000e+01, float 1.000000e+01, float 1.500000e+02, float 0x406BC70A40000000, float 1.010000e+02, float 7.700000e+01, float 4.400000e+01, float 3.500000e+01, float 0x40348A3D80000000, float 0x4058FF5C20000000, float 0x408BC70A40000000], align 16
+@arr = dso_local global [20 x float] [float 5.000000e+00, float 4.000000e+00, float 0x40249999A0000000, float 0x3FF19999A0000000, float 0x4016CCCCC0000000, float 1.000000e+02, float 2.310000e+02, float 1.110000e+02, float 4.950000e+01, float 9.900000e+01, float 1.000000e+01, float 1.500000e+02, float 0x406BC70A40000000, float 1.010000e+02, float 7.700000e+01, float 4.400000e+01, float 3.500000e+01, float 0x40348A3D80000000, float 0x4058FF5C20000000, float 0x408BC70A40000000], align 16
 
-; Function Attrs: nofree norecurse nosync nounwind sspstrong uwtable
-define dso_local float @select(i64 %0, i64 %1) local_unnamed_addr #0 {
-  br label %3
+; Function Attrs: noinline nounwind uwtable
+define dso_local float @select(i64 noundef %0, i64 noundef %1) #0 {
+  %3 = alloca i64, align 8
+  %4 = alloca i64, align 8
+  %5 = alloca i64, align 8
+  %6 = alloca i64, align 8
+  %7 = alloca i64, align 8
+  %8 = alloca i64, align 8
+  %9 = alloca i64, align 8
+  %10 = alloca float, align 4
+  %11 = alloca float, align 4
+  %12 = alloca i32, align 4
+  %13 = alloca i32, align 4
+  store i64 %0, i64* %3, align 8
+  store i64 %1, i64* %4, align 8
+  store i64 1, i64* %8, align 8
+  %14 = load i64, i64* %4, align 8
+  store i64 %14, i64* %6, align 8
+  store i32 0, i32* %13, align 4
+  store i32 0, i32* %12, align 4
+  br label %15
 
-3:                                                ; preds = %2, %79
-  %4 = phi i32 [ 0, %2 ], [ %83, %79 ]
-  %5 = phi i64 [ %1, %2 ], [ %81, %79 ]
-  %6 = phi i64 [ 1, %2 ], [ %80, %79 ]
-  %7 = add i64 %6, 1
-  %8 = icmp ugt i64 %5, %7
-  br i1 %8, label %18, label %9
+15:                                               ; preds = %216, %2
+  %16 = load i32, i32* %12, align 4
+  %17 = icmp ne i32 %16, 0
+  %18 = xor i1 %17, true
+  br i1 %18, label %19, label %217
 
-9:                                                ; preds = %3
-  %10 = icmp eq i64 %5, %7
-  br i1 %10, label %11, label %79
+19:                                               ; preds = %15
+  %20 = load i64, i64* %6, align 8
+  %21 = load i64, i64* %8, align 8
+  %22 = add i64 %21, 1
+  %23 = icmp ule i64 %20, %22
+  br i1 %23, label %24, label %51
 
-11:                                               ; preds = %9
-  %12 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %5
-  %13 = load float, float* %12, align 4, !tbaa !5
-  %14 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %6
-  %15 = load float, float* %14, align 4, !tbaa !5
-  %16 = fcmp olt float %13, %15
-  br i1 %16, label %17, label %79
+24:                                               ; preds = %19
+  %25 = load i64, i64* %6, align 8
+  %26 = load i64, i64* %8, align 8
+  %27 = add i64 %26, 1
+  %28 = icmp eq i64 %25, %27
+  br i1 %28, label %29, label %50
 
-17:                                               ; preds = %11
-  store float %13, float* %14, align 4, !tbaa !5
-  store float %15, float* %12, align 4, !tbaa !5
-  br label %79
+29:                                               ; preds = %24
+  %30 = load i64, i64* %6, align 8
+  %31 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %30
+  %32 = load float, float* %31, align 4
+  %33 = load i64, i64* %8, align 8
+  %34 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %33
+  %35 = load float, float* %34, align 4
+  %36 = fcmp olt float %32, %35
+  br i1 %36, label %37, label %49
 
-18:                                               ; preds = %3
-  %19 = add i64 %5, %6
-  %20 = lshr i64 %19, 1
-  %21 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %20
-  %22 = load float, float* %21, align 4, !tbaa !5
-  %23 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %7
-  %24 = load float, float* %23, align 4, !tbaa !5
-  store float %24, float* %21, align 4, !tbaa !5
-  store float %22, float* %23, align 4, !tbaa !5
-  %25 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %5
-  %26 = load float, float* %25, align 4, !tbaa !5
-  %27 = fcmp ogt float %22, %26
-  br i1 %27, label %28, label %29
+37:                                               ; preds = %29
+  %38 = load i64, i64* %8, align 8
+  %39 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %38
+  %40 = load float, float* %39, align 4
+  store float %40, float* %11, align 4
+  %41 = load i64, i64* %6, align 8
+  %42 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %41
+  %43 = load float, float* %42, align 4
+  %44 = load i64, i64* %8, align 8
+  %45 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %44
+  store float %43, float* %45, align 4
+  %46 = load float, float* %11, align 4
+  %47 = load i64, i64* %6, align 8
+  %48 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %47
+  store float %46, float* %48, align 4
+  br label %49
 
-28:                                               ; preds = %18
-  store float %26, float* %23, align 4, !tbaa !5
-  store float %22, float* %25, align 4, !tbaa !5
-  br label %29
-
-29:                                               ; preds = %28, %18
-  %30 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %6
-  %31 = load float, float* %30, align 4, !tbaa !5
-  %32 = load float, float* %25, align 4, !tbaa !5
-  %33 = fcmp ogt float %31, %32
-  br i1 %33, label %34, label %35
-
-34:                                               ; preds = %29
-  store float %32, float* %30, align 4, !tbaa !5
-  store float %31, float* %25, align 4, !tbaa !5
-  br label %35
-
-35:                                               ; preds = %34, %29
-  %36 = phi float [ %31, %34 ], [ %22, %29 ]
-  %37 = load float, float* %23, align 4, !tbaa !5
-  %38 = load float, float* %30, align 4, !tbaa !5
-  %39 = fcmp ogt float %37, %38
-  br i1 %39, label %40, label %41
-
-40:                                               ; preds = %35
-  store float %38, float* %23, align 4, !tbaa !5
-  store float %37, float* %30, align 4, !tbaa !5
-  br label %41
-
-41:                                               ; preds = %40, %35
-  %42 = phi float [ %37, %40 ], [ %36, %35 ]
-  %43 = load float, float* %30, align 4, !tbaa !5
-  %44 = icmp eq i32 %4, 0
-  br i1 %44, label %45, label %68
-
-45:                                               ; preds = %41, %62
-  %46 = phi i32 [ %64, %62 ], [ %4, %41 ]
-  %47 = phi float [ %66, %62 ], [ %42, %41 ]
-  %48 = phi i64 [ %52, %62 ], [ %7, %41 ]
-  %49 = phi i64 [ %58, %62 ], [ %5, %41 ]
+49:                                               ; preds = %37, %29
   br label %50
 
-50:                                               ; preds = %45, %50
-  %51 = phi i64 [ %52, %50 ], [ %48, %45 ]
-  %52 = add i64 %51, 1
-  %53 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %52
-  %54 = load float, float* %53, align 4, !tbaa !5
-  %55 = fcmp olt float %54, %43
-  br i1 %55, label %50, label %56, !llvm.loop !9
+50:                                               ; preds = %49, %24
+  store i32 1, i32* %12, align 4
+  br label %216
 
-56:                                               ; preds = %50, %56
-  %57 = phi i64 [ %58, %56 ], [ %49, %50 ]
-  %58 = add i64 %57, -1
-  %59 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %58
-  %60 = load float, float* %59, align 4, !tbaa !5
-  %61 = fcmp ogt float %60, %43
-  br i1 %61, label %56, label %62, !llvm.loop !12
+51:                                               ; preds = %19
+  %52 = load i32, i32* %12, align 4
+  %53 = icmp ne i32 %52, 0
+  br i1 %53, label %215, label %54
 
-62:                                               ; preds = %56
-  %63 = icmp ult i64 %58, %52
-  %64 = select i1 %63, i32 1, i32 %46
-  %65 = icmp eq i32 %64, 0
-  %66 = select i1 %65, float %54, float %47
-  store float %60, float* %53, align 4, !tbaa !5
-  store float %66, float* %59, align 4, !tbaa !5
-  %67 = icmp eq i32 %64, 0
-  br i1 %67, label %45, label %68, !llvm.loop !13
+54:                                               ; preds = %51
+  %55 = load i64, i64* %8, align 8
+  %56 = load i64, i64* %6, align 8
+  %57 = add i64 %55, %56
+  %58 = lshr i64 %57, 1
+  store i64 %58, i64* %9, align 8
+  %59 = load i64, i64* %9, align 8
+  %60 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %59
+  %61 = load float, float* %60, align 4
+  store float %61, float* %11, align 4
+  %62 = load i64, i64* %8, align 8
+  %63 = add i64 %62, 1
+  %64 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %63
+  %65 = load float, float* %64, align 4
+  %66 = load i64, i64* %9, align 8
+  %67 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %66
+  store float %65, float* %67, align 4
+  %68 = load float, float* %11, align 4
+  %69 = load i64, i64* %8, align 8
+  %70 = add i64 %69, 1
+  %71 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %70
+  store float %68, float* %71, align 4
+  %72 = load i64, i64* %8, align 8
+  %73 = add i64 %72, 1
+  %74 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %73
+  %75 = load float, float* %74, align 4
+  %76 = load i64, i64* %6, align 8
+  %77 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %76
+  %78 = load float, float* %77, align 4
+  %79 = fcmp ogt float %75, %78
+  br i1 %79, label %80, label %94
 
-68:                                               ; preds = %62, %41
-  %69 = phi i64 [ %5, %41 ], [ %58, %62 ]
-  %70 = phi i64 [ %7, %41 ], [ %52, %62 ]
-  %71 = phi i32 [ %4, %41 ], [ %64, %62 ]
-  %72 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %69
-  %73 = load float, float* %72, align 4, !tbaa !5
-  store float %73, float* %30, align 4, !tbaa !5
-  store float %43, float* %72, align 4, !tbaa !5
-  %74 = icmp ult i64 %69, %0
-  %75 = add i64 %69, -1
-  %76 = select i1 %74, i64 %5, i64 %75
-  %77 = icmp ugt i64 %69, %0
-  %78 = select i1 %77, i64 %6, i64 %70
-  br label %79
+80:                                               ; preds = %54
+  %81 = load i64, i64* %8, align 8
+  %82 = add i64 %81, 1
+  %83 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %82
+  %84 = load float, float* %83, align 4
+  store float %84, float* %11, align 4
+  %85 = load i64, i64* %6, align 8
+  %86 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %85
+  %87 = load float, float* %86, align 4
+  %88 = load i64, i64* %8, align 8
+  %89 = add i64 %88, 1
+  %90 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %89
+  store float %87, float* %90, align 4
+  %91 = load float, float* %11, align 4
+  %92 = load i64, i64* %6, align 8
+  %93 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %92
+  store float %91, float* %93, align 4
+  br label %94
 
-79:                                               ; preds = %68, %9, %17, %11
-  %80 = phi i64 [ %6, %11 ], [ %6, %17 ], [ %6, %9 ], [ %78, %68 ]
-  %81 = phi i64 [ %5, %11 ], [ %5, %17 ], [ %5, %9 ], [ %76, %68 ]
-  %82 = phi i1 [ false, %11 ], [ false, %17 ], [ false, %9 ], [ true, %68 ]
-  %83 = phi i32 [ %4, %11 ], [ %4, %17 ], [ %4, %9 ], [ %71, %68 ]
-  br i1 %82, label %3, label %84, !llvm.loop !14
+94:                                               ; preds = %80, %54
+  %95 = load i64, i64* %8, align 8
+  %96 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %95
+  %97 = load float, float* %96, align 4
+  %98 = load i64, i64* %6, align 8
+  %99 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %98
+  %100 = load float, float* %99, align 4
+  %101 = fcmp ogt float %97, %100
+  br i1 %101, label %102, label %114
 
-84:                                               ; preds = %79
-  %85 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %0
-  %86 = load float, float* %85, align 4, !tbaa !5
-  ret float %86
+102:                                              ; preds = %94
+  %103 = load i64, i64* %8, align 8
+  %104 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %103
+  %105 = load float, float* %104, align 4
+  store float %105, float* %11, align 4
+  %106 = load i64, i64* %6, align 8
+  %107 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %106
+  %108 = load float, float* %107, align 4
+  %109 = load i64, i64* %8, align 8
+  %110 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %109
+  store float %108, float* %110, align 4
+  %111 = load float, float* %11, align 4
+  %112 = load i64, i64* %6, align 8
+  %113 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %112
+  store float %111, float* %113, align 4
+  br label %114
+
+114:                                              ; preds = %102, %94
+  %115 = load i64, i64* %8, align 8
+  %116 = add i64 %115, 1
+  %117 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %116
+  %118 = load float, float* %117, align 4
+  %119 = load i64, i64* %8, align 8
+  %120 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %119
+  %121 = load float, float* %120, align 4
+  %122 = fcmp ogt float %118, %121
+  br i1 %122, label %123, label %137
+
+123:                                              ; preds = %114
+  %124 = load i64, i64* %8, align 8
+  %125 = add i64 %124, 1
+  %126 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %125
+  %127 = load float, float* %126, align 4
+  store float %127, float* %11, align 4
+  %128 = load i64, i64* %8, align 8
+  %129 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %128
+  %130 = load float, float* %129, align 4
+  %131 = load i64, i64* %8, align 8
+  %132 = add i64 %131, 1
+  %133 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %132
+  store float %130, float* %133, align 4
+  %134 = load float, float* %11, align 4
+  %135 = load i64, i64* %8, align 8
+  %136 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %135
+  store float %134, float* %136, align 4
+  br label %137
+
+137:                                              ; preds = %123, %114
+  %138 = load i64, i64* %8, align 8
+  %139 = add i64 %138, 1
+  store i64 %139, i64* %5, align 8
+  %140 = load i64, i64* %6, align 8
+  store i64 %140, i64* %7, align 8
+  %141 = load i64, i64* %8, align 8
+  %142 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %141
+  %143 = load float, float* %142, align 4
+  store float %143, float* %10, align 4
+  br label %144
+
+144:                                              ; preds = %184, %137
+  %145 = load i32, i32* %13, align 4
+  %146 = icmp ne i32 %145, 0
+  %147 = xor i1 %146, true
+  br i1 %147, label %148, label %193
+
+148:                                              ; preds = %144
+  %149 = load i64, i64* %5, align 8
+  %150 = add i64 %149, 1
+  store i64 %150, i64* %5, align 8
+  br label %151
+
+151:                                              ; preds = %157, %148
+  %152 = load i64, i64* %5, align 8
+  %153 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %152
+  %154 = load float, float* %153, align 4
+  %155 = load float, float* %10, align 4
+  %156 = fcmp olt float %154, %155
+  br i1 %156, label %157, label %160
+
+157:                                              ; preds = %151
+  %158 = load i64, i64* %5, align 8
+  %159 = add i64 %158, 1
+  store i64 %159, i64* %5, align 8
+  br label %151, !llvm.loop !6
+
+160:                                              ; preds = %151
+  %161 = load i64, i64* %7, align 8
+  %162 = add i64 %161, -1
+  store i64 %162, i64* %7, align 8
+  br label %163
+
+163:                                              ; preds = %169, %160
+  %164 = load i64, i64* %7, align 8
+  %165 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %164
+  %166 = load float, float* %165, align 4
+  %167 = load float, float* %10, align 4
+  %168 = fcmp ogt float %166, %167
+  br i1 %168, label %169, label %172
+
+169:                                              ; preds = %163
+  %170 = load i64, i64* %7, align 8
+  %171 = add i64 %170, -1
+  store i64 %171, i64* %7, align 8
+  br label %163, !llvm.loop !8
+
+172:                                              ; preds = %163
+  %173 = load i64, i64* %7, align 8
+  %174 = load i64, i64* %5, align 8
+  %175 = icmp ult i64 %173, %174
+  br i1 %175, label %176, label %177
+
+176:                                              ; preds = %172
+  store i32 1, i32* %13, align 4
+  br label %177
+
+177:                                              ; preds = %176, %172
+  %178 = load i32, i32* %13, align 4
+  %179 = icmp ne i32 %178, 0
+  br i1 %179, label %184, label %180
+
+180:                                              ; preds = %177
+  %181 = load i64, i64* %5, align 8
+  %182 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %181
+  %183 = load float, float* %182, align 4
+  store float %183, float* %11, align 4
+  br label %184
+
+184:                                              ; preds = %180, %177
+  %185 = load i64, i64* %7, align 8
+  %186 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %185
+  %187 = load float, float* %186, align 4
+  %188 = load i64, i64* %5, align 8
+  %189 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %188
+  store float %187, float* %189, align 4
+  %190 = load float, float* %11, align 4
+  %191 = load i64, i64* %7, align 8
+  %192 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %191
+  store float %190, float* %192, align 4
+  br label %144, !llvm.loop !9
+
+193:                                              ; preds = %144
+  %194 = load i64, i64* %7, align 8
+  %195 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %194
+  %196 = load float, float* %195, align 4
+  %197 = load i64, i64* %8, align 8
+  %198 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %197
+  store float %196, float* %198, align 4
+  %199 = load float, float* %10, align 4
+  %200 = load i64, i64* %7, align 8
+  %201 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %200
+  store float %199, float* %201, align 4
+  %202 = load i64, i64* %7, align 8
+  %203 = load i64, i64* %3, align 8
+  %204 = icmp uge i64 %202, %203
+  br i1 %204, label %205, label %208
+
+205:                                              ; preds = %193
+  %206 = load i64, i64* %7, align 8
+  %207 = sub i64 %206, 1
+  store i64 %207, i64* %6, align 8
+  br label %208
+
+208:                                              ; preds = %205, %193
+  %209 = load i64, i64* %7, align 8
+  %210 = load i64, i64* %3, align 8
+  %211 = icmp ule i64 %209, %210
+  br i1 %211, label %212, label %214
+
+212:                                              ; preds = %208
+  %213 = load i64, i64* %5, align 8
+  store i64 %213, i64* %8, align 8
+  br label %214
+
+214:                                              ; preds = %212, %208
+  br label %215
+
+215:                                              ; preds = %214, %51
+  br label %216
+
+216:                                              ; preds = %215, %50
+  br label %15, !llvm.loop !10
+
+217:                                              ; preds = %15
+  %218 = load i64, i64* %3, align 8
+  %219 = getelementptr inbounds [20 x float], [20 x float]* @arr, i64 0, i64 %218
+  %220 = load float, float* %219, align 4
+  ret float %220
 }
 
-; Function Attrs: nofree norecurse nosync nounwind sspstrong uwtable
-define dso_local i32 @main() local_unnamed_addr #0 {
-  %1 = call float @select(i64 10, i64 20)
+; Function Attrs: noinline nounwind uwtable
+define dso_local i32 @main() #0 {
+  %1 = call float @select(i64 noundef 10, i64 noundef 20)
   ret i32 0
 }
 
-attributes #0 = { nofree norecurse nosync nounwind sspstrong uwtable "frame-pointer"="none" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #0 = { noinline nounwind uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
 
-!llvm.module.flags = !{!0, !1, !2, !3}
-!llvm.ident = !{!4}
+!llvm.module.flags = !{!0, !1, !2, !3, !4}
+!llvm.ident = !{!5}
 
 !0 = !{i32 1, !"wchar_size", i32 4}
 !1 = !{i32 7, !"PIC Level", i32 2}
 !2 = !{i32 7, !"PIE Level", i32 2}
 !3 = !{i32 7, !"uwtable", i32 1}
-!4 = !{!"clang version 13.0.1"}
-!5 = !{!6, !6, i64 0}
-!6 = !{!"float", !7, i64 0}
-!7 = !{!"omnipotent char", !8, i64 0}
-!8 = !{!"Simple C/C++ TBAA"}
-!9 = distinct !{!9, !10, !11}
-!10 = !{!"llvm.loop.mustprogress"}
-!11 = !{!"llvm.loop.unroll.disable"}
-!12 = distinct !{!12, !10, !11}
-!13 = distinct !{!13, !10, !11}
-!14 = distinct !{!14, !10, !11}
+!4 = !{i32 7, !"frame-pointer", i32 2}
+!5 = !{!"Ubuntu clang version 14.0.0-1ubuntu1"}
+!6 = distinct !{!6, !7}
+!7 = !{!"llvm.loop.mustprogress"}
+!8 = distinct !{!8, !7}
+!9 = distinct !{!9, !7}
+!10 = distinct !{!10, !7}

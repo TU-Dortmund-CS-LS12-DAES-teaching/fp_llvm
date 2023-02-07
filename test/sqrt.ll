@@ -1,78 +1,143 @@
-; ModuleID = 'sqrt.c'
-source_filename = "sqrt.c"
+; ModuleID = 'src/sqrt.c'
+source_filename = "src/sqrt.c"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-pc-linux-gnu"
 
-; Function Attrs: mustprogress nofree norecurse nosync nounwind readnone sspstrong uwtable willreturn
-define dso_local float @fabs(float %0) local_unnamed_addr #0 {
-  %2 = fcmp olt float %0, 0.000000e+00
-  %3 = fneg float %0
-  %4 = select i1 %2, float %3, float %0
-  ret float %4
+; Function Attrs: noinline nounwind uwtable
+define dso_local float @fabs(float noundef %0) #0 {
+  %2 = alloca float, align 4
+  %3 = alloca float, align 4
+  store float %0, float* %3, align 4
+  %4 = load float, float* %3, align 4
+  %5 = fcmp olt float %4, 0.000000e+00
+  br i1 %5, label %6, label %9
+
+6:                                                ; preds = %1
+  %7 = load float, float* %3, align 4
+  %8 = fneg float %7
+  store float %8, float* %2, align 4
+  br label %11
+
+9:                                                ; preds = %1
+  %10 = load float, float* %3, align 4
+  store float %10, float* %2, align 4
+  br label %11
+
+11:                                               ; preds = %9, %6
+  %12 = load float, float* %2, align 4
+  ret float %12
 }
 
-; Function Attrs: nofree nosync nounwind readnone sspstrong uwtable
-define dso_local float @sqrtfcn(float %0) local_unnamed_addr #1 {
-  %2 = fcmp oeq float %0, 0.000000e+00
-  br i1 %2, label %30, label %3
+; Function Attrs: noinline nounwind uwtable
+define dso_local float @sqrtfcn(float noundef %0) #0 {
+  %2 = alloca float, align 4
+  %3 = alloca float, align 4
+  %4 = alloca float, align 4
+  %5 = alloca double, align 8
+  %6 = alloca double, align 8
+  %7 = alloca i32, align 4
+  %8 = alloca i32, align 4
+  store float %0, float* %2, align 4
+  %9 = load float, float* %2, align 4
+  %10 = fdiv float %9, 1.000000e+01
+  store float %10, float* %3, align 4
+  store double 1.000000e-05, double* %6, align 8
+  store i32 0, i32* %8, align 4
+  %11 = load float, float* %2, align 4
+  %12 = fcmp oeq float %11, 0.000000e+00
+  br i1 %12, label %13, label %14
 
-3:                                                ; preds = %1
-  %4 = fdiv float %0, 1.000000e+01
-  br label %5
+13:                                               ; preds = %1
+  store float 0.000000e+00, float* %3, align 4
+  br label %56
 
-5:                                                ; preds = %3, %25
-  %6 = phi i32 [ 0, %3 ], [ %27, %25 ]
-  %7 = phi i32 [ 1, %3 ], [ %28, %25 ]
-  %8 = phi float [ %4, %3 ], [ %26, %25 ]
-  %9 = icmp eq i32 %6, 0
-  br i1 %9, label %10, label %25
+14:                                               ; preds = %1
+  store i32 1, i32* %7, align 4
+  br label %15
 
-10:                                               ; preds = %5
-  %11 = fmul float %8, %8
-  %12 = fsub float %0, %11
-  %13 = fpext float %12 to double
-  %14 = fpext float %8 to double
-  %15 = fmul double %14, 2.000000e+00
-  %16 = fdiv double %13, %15
-  %17 = fptrunc double %16 to float
-  %18 = fadd float %8, %17
-  %19 = fmul float %18, %18
-  %20 = fsub float %0, %19
-  %21 = call float @llvm.fabs.f32(float %20)
-  %22 = fpext float %21 to double
-  %23 = fcmp ugt double %22, 1.000000e-05
-  br i1 %23, label %25, label %24
+15:                                               ; preds = %52, %14
+  %16 = load i32, i32* %7, align 4
+  %17 = icmp slt i32 %16, 20
+  br i1 %17, label %18, label %55
 
-24:                                               ; preds = %10
-  br label %25
+18:                                               ; preds = %15
+  %19 = load i32, i32* %8, align 4
+  %20 = icmp ne i32 %19, 0
+  br i1 %20, label %50, label %21
 
-25:                                               ; preds = %24, %10, %5
-  %26 = phi float [ %8, %5 ], [ %18, %24 ], [ %18, %10 ]
-  %27 = phi i32 [ 1, %5 ], [ 1, %24 ], [ 0, %10 ]
-  %28 = add nuw nsw i32 %7, 1
-  %29 = icmp eq i32 %28, 20
-  br i1 %29, label %30, label %5, !llvm.loop !5
+21:                                               ; preds = %18
+  %22 = load float, float* %2, align 4
+  %23 = load float, float* %3, align 4
+  %24 = load float, float* %3, align 4
+  %25 = fneg float %23
+  %26 = call float @llvm.fmuladd.f32(float %25, float %24, float %22)
+  %27 = fpext float %26 to double
+  %28 = load float, float* %3, align 4
+  %29 = fpext float %28 to double
+  %30 = fmul double 2.000000e+00, %29
+  %31 = fdiv double %27, %30
+  %32 = fptrunc double %31 to float
+  store float %32, float* %4, align 4
+  %33 = load float, float* %3, align 4
+  %34 = load float, float* %4, align 4
+  %35 = fadd float %33, %34
+  store float %35, float* %3, align 4
+  %36 = load float, float* %2, align 4
+  %37 = load float, float* %3, align 4
+  %38 = load float, float* %3, align 4
+  %39 = fneg float %37
+  %40 = call float @llvm.fmuladd.f32(float %39, float %38, float %36)
+  %41 = fpext float %40 to double
+  store double %41, double* %5, align 8
+  %42 = load double, double* %5, align 8
+  %43 = fptrunc double %42 to float
+  %44 = call float @fabs(float noundef %43)
+  %45 = fpext float %44 to double
+  %46 = load double, double* %6, align 8
+  %47 = fcmp ole double %45, %46
+  br i1 %47, label %48, label %49
 
-30:                                               ; preds = %25, %1
-  %31 = phi float [ 0.000000e+00, %1 ], [ %26, %25 ]
-  ret float %31
+48:                                               ; preds = %21
+  store i32 1, i32* %8, align 4
+  br label %49
+
+49:                                               ; preds = %48, %21
+  br label %51
+
+50:                                               ; preds = %18
+  br label %51
+
+51:                                               ; preds = %50, %49
+  br label %52
+
+52:                                               ; preds = %51
+  %53 = load i32, i32* %7, align 4
+  %54 = add nsw i32 %53, 1
+  store i32 %54, i32* %7, align 4
+  br label %15, !llvm.loop !6
+
+55:                                               ; preds = %15
+  br label %56
+
+56:                                               ; preds = %55, %13
+  %57 = load float, float* %3, align 4
+  ret float %57
 }
 
 ; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
-declare float @llvm.fabs.f32(float) #2
+declare float @llvm.fmuladd.f32(float, float, float) #1
 
-attributes #0 = { mustprogress nofree norecurse nosync nounwind readnone sspstrong uwtable willreturn "frame-pointer"="none" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #1 = { nofree nosync nounwind readnone sspstrong uwtable "frame-pointer"="none" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #2 = { nofree nosync nounwind readnone speculatable willreturn }
+attributes #0 = { noinline nounwind uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
 
-!llvm.module.flags = !{!0, !1, !2, !3}
-!llvm.ident = !{!4}
+!llvm.module.flags = !{!0, !1, !2, !3, !4}
+!llvm.ident = !{!5}
 
 !0 = !{i32 1, !"wchar_size", i32 4}
 !1 = !{i32 7, !"PIC Level", i32 2}
 !2 = !{i32 7, !"PIE Level", i32 2}
 !3 = !{i32 7, !"uwtable", i32 1}
-!4 = !{!"clang version 13.0.1"}
-!5 = distinct !{!5, !6, !7}
-!6 = !{!"llvm.loop.mustprogress"}
-!7 = !{!"llvm.loop.unroll.disable"}
+!4 = !{i32 7, !"frame-pointer", i32 2}
+!5 = !{!"Ubuntu clang version 14.0.0-1ubuntu1"}
+!6 = distinct !{!6, !7}
+!7 = !{!"llvm.loop.mustprogress"}
