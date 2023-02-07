@@ -56,10 +56,15 @@ struct MyVisitor : public InstVisitor<MyVisitor> {
 When the visit() function is called on the above InstVisitor it will visit all three different Instruction types.
 
 ### Operands
-Every Value has operands. The Value is definded by the left
+Every Value has operands. The Value is definded by the left side of the "=", at least for most Instructions. All the Operators are Values that are used by the current Value and can be found on the right side of the "=".
+```llvm
+  %45 = add nsw i32 %44, 1
+```
+In the above example %45 is the current Value or Instruction visited (add). Both of its operands are on the left side. The first is %44 and the second one is a constant 1.
+A Values operands can be accessed by the
 
 ## Exercise
 
 1. Use the code snippets in the documentation in your FpPass and count all allocas for the fft1 test, which can be called by pressing F5. Also make sure to print your counted number with outs(). If implemented correctly, you should count 35 allocas in the fft1 test.
 
-2. Visit all load instructions and print the data of the Value (Loaded into) and the operator (Loaded from). The operand for a load instruction is basically the pointer that a value is loaded from.
+2. Visit all load instructions and print the data Type (int, bool, ...) of the Value (Loaded into) and the operator (Loaded from). The operand for a load instruction is basically the pointer that a value is loaded from.
