@@ -6,7 +6,7 @@
     {
       "label": "config",
       "type": "shell",
-      "command": "rm -r build ; rm complile_commands.json ; mkdir build ; cd build ; cmake -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DLT_LLVM_INSTALL_DIR=$LLVM_DIR ..",
+      "command": "rm -r build ; rm complile_commands.json ; ./helper.sh config",
       "group": "build"
     },
     {

@@ -8,5 +8,6 @@ build/
 .bash_history
 .cache/
 *.solution
+*.ll
 compile_commands.json
 llvm/
