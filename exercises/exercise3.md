@@ -52,3 +52,23 @@ Also the Value N which we got from step 4. needs to be made into a Constant Int 
 auto *N = ConstantInt::get(...)
 ```
 When the new Instruction is generated it can be replaced by the ReplaceInstWithInst() function. This will replace the old instruction and all its uses with the new instruction. Again read the [Doc](https://llvm.org/docs/ProgrammersManual.html#replacing-an-instruction-with-another-value).
+
+## Solution
+
+There is only one integer mul in the fft1 module "%42", which should be replaced by a shl of 1. Running your pass on fft1 with F5 will generate an out.ll in your repositorys root directory.
+Before BB 40 in Line 122 of fft1.ll:
+```llvm
+40:                                               ; preds = %36
+  %41 = load i32, i32* %7, align 4
+  %42 = mul nsw i32 %41, 2
+  store i32 %42, i32* %7, align 4
+  br label %43
+```
+After BB40 in Line 122 out.ll:
+```llvm
+40:                                               ; preds = %36
+  %41 = load i32, i32* %7, align 4
+  %42 = shl i32 %41, 1
+  store i32 %42, i32* %7, align 4
+  br label %43
+```

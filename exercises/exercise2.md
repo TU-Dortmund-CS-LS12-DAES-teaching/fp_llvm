@@ -66,6 +66,10 @@ A Values operands can be accessed by the
 
 ## Exercise
 
-1. Use the code snippets in the documentation in your FpPass and count all allocas for the fft1 test, which can be called by pressing F5. Also make sure to print your counted number with outs(). If implemented correctly, you should count 35 allocas in the fft1 test.
+1. Use the code snippets in the documentation in your FpPass and count all allocas for the fft1 test, which can be called by pressing F5. Also make sure to print your counted number with outs().
 
 2. Visit all load instructions and print the data Type (int, bool, ...) of the Value (Loaded into) and the operator (Loaded from). The operand for a load instruction is basically the pointer that a value is loaded from.
+
+## Solution
+
+1. 35 allocas for the fft1 Module.

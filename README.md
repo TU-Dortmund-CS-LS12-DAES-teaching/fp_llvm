@@ -3,7 +3,8 @@ In this Fachprojekt you will gradually learn how to build a LLVM Pass, that perf
 
 ## Getting Started
 
- Start doing the first simple Hello World exercise.
+ Start doing the first simple Hello World [exercise0](exercises/exercise0.md).
+ After that continue with the other exercises in the exercise Folder. The exercise descriptions should guide you to the right documentation and give sufficient hints for you to solve the assignements.
 
 
 ## Disclaimer
