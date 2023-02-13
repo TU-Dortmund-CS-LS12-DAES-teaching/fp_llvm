@@ -13,7 +13,7 @@ config() {
   mkdir build
   cd build
   echo "==== Configuring cmake ===="
-  cmake -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DLT_LLVM_INSTALL_DIR=$LLVM_DIR ..
+  cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DLT_LLVM_INSTALL_DIR=$LLVM_DIR ..
   cd ..
   cp build/compile_commands.json compile_commands.json
   echo "==== Generating test files from source ===="

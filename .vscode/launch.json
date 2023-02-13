@@ -13,9 +13,10 @@
         "-load-pass-plugin",
         "${workspaceFolder}/build/lib/libFpPass.so",
         "-passes=lru-misses",
+        "-S",
         "${workspaceFolder}/test/fft1.ll",
         "-o",
-        "/dev/null"
+        "out.ll"
       ],
       "cwd": "${workspaceFolder}"
     },

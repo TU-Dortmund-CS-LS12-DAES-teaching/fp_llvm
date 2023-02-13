@@ -21,7 +21,16 @@
 				"notskm.clang-tidy",
 				"yzhang.markdown-all-in-one",
 				"shd101wyy.markdown-preview-enhanced",
-				"rreverser.llvm"
+				"rreverser.llvm",
+				"bierner.github-markdown-preview",
+				"eamodio.gitlens",
+				"cschlosser.doxdocg",
+				"mutantdino.resource",
+				"gruntfuggly.todo-tree",
+				"shakram02.bash-beautify",
+				"mads-hartmann.bash-ide-vscode",
+				"foxundermoon.shell-format",
+				"timonwong.shellcheck"
 			]
 		}
 	},

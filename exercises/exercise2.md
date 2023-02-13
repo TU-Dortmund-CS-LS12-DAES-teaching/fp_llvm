@@ -13,9 +13,10 @@ This exercise a different way to find Values with the [InstVisitor](https://llvm
 ### Links
 
 LLVM Intermediate Representation (IR): [LangRef](https://llvm.org/docs/LangRef.html)
+
 LLVM Programmers Manual: [Manual](https://llvm.org/docs/ProgrammersManual.html)
 
-### InstVisitor
+### [InstVisitor](https://llvm.org/doxygen/classllvm_1_1InstVisitor.html)
 
 The instruction visitor allows you to visit specific types of instructions without using many cast operations and loops for iterating over all Values. This will keep the code cleaner. The InstVisitor struct can be created in your namespace, Pass-struct or even in your function. A InsrVisitor for counting all memory allocation instructions would look like this:
 ```cpp
