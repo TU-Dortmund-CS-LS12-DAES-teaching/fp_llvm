@@ -18,7 +18,8 @@
         "-o",
         "out.ll"
       ],
-      "cwd": "${workspaceFolder}"
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "build"
     },
     // {
     //   "name": "gdb fft1",
