@@ -33,13 +33,7 @@ bool IsIntType = MyInstruction.isIntegerTy();
 ```
 3. Check all [mul](https://llvm.org/docs/LangRef.html#mul-instruction) instructions, if they have a [constant](https://llvm.org/docs/ProgrammersManual.html#the-constant-class-and-subclasses) integer as operand.
 
-```cpp
-ConstantInt *ConstInt = dyn_cast<ConstantInt>(OP)
-IntegerType *CIType = ConstInt->getType();
-APInt CIValue = ConstInt->getValue();
-```
-
-4. Check the constant operand $x$ if it satisfies the follwoing $x = 2^n, \exists n \in \mathbb{N}$. Tipp: Use std::floor() function. The [APInt](https://llvm.org/doxygen/classllvm_1_1APInt.html) Class has a built in [sqrt](https://llvm.org/doxygen/classllvm_1_1APInt.html#af48b6a9423c3b72b453f0eb881129d3b) function, which can be sued in step 5 but not here, as it returns rounded integer values.
+4. Check the constant operand $x$ if it satisfies the following $\exists n \in \mathbb{N}.x = 2^n$. Hint: Take a look at the documentation of LLVM's arbitray precision integers [APInt](https://llvm.org/doxygen/classllvm_1_1APInt.html).
 
 
 
@@ -47,11 +41,11 @@ APInt CIValue = ConstInt->getValue();
 ```cpp
 Instruction *NewInst = BinaryOperator::CreateShl(...)
 ```
-Also the Value N which we got from step 4. needs to be made into a Constant Int with:
+The previously determined value has to be converted into a Constant Int through:
 ```cpp
 auto *N = ConstantInt::get(...)
 ```
-When the new Instruction is generated it can be replaced by the ReplaceInstWithInst() function. This will replace the old instruction and all its uses with the new instruction. Again read the [Doc](https://llvm.org/docs/ProgrammersManual.html#replacing-an-instruction-with-another-value).
+When the new Instruction is generated it can be replaced through the ReplaceInstWithInst() function. This will replace the old instruction and all its uses with the new instruction. Again read the [Doc](https://llvm.org/docs/ProgrammersManual.html#replacing-an-instruction-with-another-value).
 
 ## Solution
 
